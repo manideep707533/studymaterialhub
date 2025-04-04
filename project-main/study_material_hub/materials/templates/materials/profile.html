@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h2>Your Uploaded Materials</h2>
+
+    <ul>
+        {% for material in user_materials %}
+            <li>
+                <strong>{{ material.title }}</strong> - {{ material.description }}
+                <a href="{% url 'download_material' material.id %}">Download</a>
+                <a href="{% url 'delete_material' material.id %}">Delete</a>
+            </li>
+        {% empty %}
+            <li>No materials uploaded yet.</li>
+        {% endfor %}
+    </ul>
+
+    <a href="{% url 'upload_material' %}">Upload New Material</a>
+{% endblock %}
